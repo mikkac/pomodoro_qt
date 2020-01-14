@@ -26,9 +26,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         pomodoro_view.cpp
+        pomodoro_model.cpp
+        timer.cpp
+        settings_manager.cpp
 
 HEADERS += \
         pomodoro_view.h
+        ipomodoro_model.h
+        isettings_manager.h
+        itimer.h
+        pomodoro_model.h
+        settings_manager.h
+        timer.h
 
 FORMS += \
         pomodoro_view.ui
