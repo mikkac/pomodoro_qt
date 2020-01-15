@@ -1,22 +1,29 @@
 #ifndef POMODORO_VIEW_H
 #define POMODORO_VIEW_H
 
+#include <QDebug>
 #include <QWidget>
+#include "ipomodoro_model.h"
 
 namespace Ui {
 class PomodoroView;
 }
 
-class PomodoroView : public QWidget
-{
-    Q_OBJECT
+class PomodoroView : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit PomodoroView(QWidget *parent = 0);
-    ~PomodoroView();
+ public:
+  explicit PomodoroView(QWidget* parent = nullptr);
+  ~PomodoroView();
 
-private:
-    Ui::PomodoroView *ui;
+  void setModel(IPomodoroModel* model) {
+    model_ = model;
+    qDebug() << "PomodoroView: setModel";
+  }
+
+ private:
+  Ui::PomodoroView* ui;
+  IPomodoroModel* model_{};
 };
 
-#endif // POMODORO_VIEW_H
+#endif  // POMODORO_VIEW_H
