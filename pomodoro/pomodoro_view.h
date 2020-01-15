@@ -16,15 +16,12 @@ class PomodoroView : public QWidget {
   explicit PomodoroView(QWidget* parent = nullptr);
   ~PomodoroView();
 
-  void setModel(IPomodoroModel* model) {
-    model_ = model;
-    qDebug() << "PomodoroView: setModel";
-  }
+  void setModel(IPomodoroModel* model);
 
  private slots:
   void on_startButton_clicked();
-
   void on_stopButton_clicked();
+  void on_timerValueChanged(uint16_t ms);
 
  private:
   Ui::PomodoroView* ui;

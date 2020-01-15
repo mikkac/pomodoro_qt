@@ -3,16 +3,14 @@
 
 #include <QDebug>
 #include <QObject>
+#include <QtPlugin>
 #include "ipomodoro_model.h"
 #include "itimer.h"
 
 class PomodoroModel : public QObject, public IPomodoroModel {
   Q_OBJECT
  public:
-  explicit PomodoroModel(QObject* parent = nullptr, ITimer* timer = nullptr)
-      : QObject(parent), IPomodoroModel(), timer_{timer} {
-    qDebug() << "PomodoroModel: ctor";
-  }
+  explicit PomodoroModel(QObject* parent = nullptr, ITimer* timer = nullptr);
   PomodoroModel(const PomodoroModel&) = default;
   PomodoroModel(PomodoroModel&&) noexcept = default;
   PomodoroModel& operator=(const PomodoroModel&) = default;
@@ -23,6 +21,9 @@ class PomodoroModel : public QObject, public IPomodoroModel {
   virtual void start() override;
   virtual void pause() override;
   virtual void stop() override;
+
+ signals:
+  void timerValueChanged(uint16_t ms);
 
  protected:
   ITimer* timer_{};

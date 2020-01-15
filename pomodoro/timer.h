@@ -8,9 +8,7 @@
 class Timer : public QObject, public ITimer {
   Q_OBJECT
  public:
-  explicit Timer(QObject* parent = nullptr) : QObject(parent), ITimer() {
-    qDebug() << "Timer: ctor";
-  }
+  explicit Timer(QObject* parent = nullptr);
   Timer(const Timer&) = default;
   Timer(Timer&&) = default;
   Timer& operator=(const Timer&) noexcept = default;
@@ -21,10 +19,13 @@ class Timer : public QObject, public ITimer {
   virtual void stopCountdown() override;
 
  signals:
-  void timeChanged(uint16_t new_time_ms);
+  void updateTime(uint16_t ms);
+ private slots:
+  void tick();
 
  private:
-  uint16_t time_left{};
+  uint16_t interval_{1000};
+  uint16_t time_left_{};
   QTimer* timer_;
 };
 

@@ -1,13 +1,21 @@
 #include "pomodoro_view.h"
 #include "ui_pomodoro_view.h"
 
-PomodoroView::PomodoroView(QWidget *parent)
+PomodoroView::PomodoroView(QWidget* parent)
     : QWidget(parent), ui(new Ui::PomodoroView) {
   qDebug() << "PomodoroView: ctor";
   ui->setupUi(this);
 }
 
 PomodoroView::~PomodoroView() { delete ui; }
+
+void PomodoroView::setModel(IPomodoroModel* model) {
+  model_ = model;
+  QObject::connect(dynamic_cast<QObject*>(model),
+                   SIGNAL(timerValueChanged(uint16_t)), this,
+                   SLOT(on_timerValueChanged(uint16_t)));
+  qDebug() << "PomodoroView: setModel";
+}
 
 void PomodoroView::on_startButton_clicked() {
   if (!is_started) {
@@ -32,4 +40,8 @@ void PomodoroView::on_stopButton_clicked() {
     is_started = false;
     is_paused = false;
   }
+}
+
+void PomodoroView::on_timerValueChanged(uint16_t ms) {
+  ui->timerLabel->setText(QString::number(ms));
 }
