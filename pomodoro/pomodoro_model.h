@@ -20,14 +20,13 @@ class PomodoroModel : public QObject, public IPomodoroModel {
   ~PomodoroModel() noexcept = default;
 
   virtual void setMode(Mode mode) override;
-
- public slots:
   virtual void start() override;
   virtual void pause() override;
   virtual void stop() override;
 
  protected:
   ITimer* timer_{};
+  Mode mode_{Mode::WORK};  // get it from settings
 };
 
 #endif  // POMODORO_MODEL_H
