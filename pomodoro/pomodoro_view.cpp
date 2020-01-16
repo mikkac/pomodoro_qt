@@ -12,8 +12,11 @@ PomodoroView::~PomodoroView() { delete ui; }
 void PomodoroView::setModel(IPomodoroModel* model) {
   model_ = model;
   QObject::connect(dynamic_cast<QObject*>(model),
-                   SIGNAL(timerValueChanged(uint16_t)), this,
+                   SIGNAL(emitNewTimerValue(uint16_t)), this,
                    SLOT(on_timerValueChanged(uint16_t)));
+  QObject::connect(dynamic_cast<QObject*>(model),
+                   SIGNAL(emitNewModeValue(Mode)), this,
+                   SLOT(on_modeValueChanged(Mode)));
   qDebug() << "PomodoroView: setModel";
 }
 
@@ -42,6 +45,26 @@ void PomodoroView::on_stopButton_clicked() {
   }
 }
 
-void PomodoroView::on_timerValueChanged(uint16_t ms) {
-  ui->timerLabel->setText(QString::number(ms));
+void PomodoroView::on_timerValueChanged(uint16_t seconds) {
+  ui->timerLabel->setText(QString::number(seconds));
+}
+
+void PomodoroView::on_modeValueChanged(Mode mode) {
+  QString display_value{};
+  switch (mode) {
+    case Mode::WORK:
+      display_value = "Work";
+      break;
+    case Mode::SHORT_BREAK:
+      display_value = "Long break";
+      break;
+    case Mode::LONG_BREAK:
+      display_value = "Short break";
+      break;
+    default:
+      display_value = "Unknown";
+      break;
+  }
+  qDebug() << "PomodoroView: mode to set: " << display_value;
+  ui->modeLabel->setText(display_value);
 }

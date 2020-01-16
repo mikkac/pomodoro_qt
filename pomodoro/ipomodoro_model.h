@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-enum class Mode { NONE, WORK, SHORT_BREAK, LONG_BREAK };
+enum class Mode { WORK, SHORT_BREAK, LONG_BREAK };
 
 class IPomodoroModel {
  public:
@@ -15,11 +15,13 @@ class IPomodoroModel {
   virtual ~IPomodoroModel() noexcept = default;
 
   virtual void setMode(Mode mode) = 0;
+  virtual void setTime(uint16_t value) = 0;
   virtual void start() = 0;
   virtual void pause() = 0;
   virtual void stop() = 0;
 
-  void timerValueChanged(uint16_t ms);
+  void emitNewTimerValue(uint16_t seconds);
+  void emitNewModeValue(Mode mode);
 };
 
 #endif  // IPOMODORO_MODEL_H

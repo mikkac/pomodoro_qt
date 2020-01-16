@@ -15,17 +15,17 @@ class Timer : public QObject, public ITimer {
   Timer& operator=(Timer&&) noexcept = default;
   ~Timer() noexcept = default;
 
-  virtual void startCountdown(uint16_t init_ms) override;
+  virtual void startCountdown(uint16_t init_seconds) override;
   virtual void stopCountdown() override;
 
  signals:
-  void updateTime(uint16_t ms);
+  void updateTime(uint16_t seconds);
  private slots:
   void tick();
 
  private:
-  uint16_t interval_{1000};
-  uint16_t time_left_{};
+  uint16_t interval_ms_{1000};
+  uint16_t time_left_seconds_{};
   QTimer* timer_;
 };
 

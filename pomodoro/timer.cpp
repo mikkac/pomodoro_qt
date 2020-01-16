@@ -8,10 +8,10 @@ Timer::Timer(QObject* parent) : QObject(parent), ITimer() {
   QObject::connect(timer_, SIGNAL(timeout()), this, SLOT(tick()));
 }
 
-void Timer::startCountdown(uint16_t init_ms) {
-  time_left_ = init_ms;
+void Timer::startCountdown(uint16_t init_seconds) {
+  time_left_seconds_ = init_seconds;
   timer_->start();
-  qDebug() << "Timer: startCountdown = " << init_ms;
+  qDebug() << "Timer: startCountdown = " << init_seconds;
 }
 
 void Timer::stopCountdown() {
@@ -20,6 +20,6 @@ void Timer::stopCountdown() {
 }
 
 void Timer::tick() {
-  time_left_ -= interval_ / 1000;
-  emit updateTime(time_left_);
+  time_left_seconds_ -= interval_ms_ / 1000;
+  emit updateTime(time_left_seconds_);
 }

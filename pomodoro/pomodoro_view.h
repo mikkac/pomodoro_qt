@@ -21,7 +21,8 @@ class PomodoroView : public QWidget {
  private slots:
   void on_startButton_clicked();
   void on_stopButton_clicked();
-  void on_timerValueChanged(uint16_t ms);
+  void on_timerValueChanged(uint16_t seconds);
+  void on_modeValueChanged(Mode mode);
 
  private:
   Ui::PomodoroView* ui;
