@@ -1,0 +1,6 @@
+#ifndef POMODORO_COMMON_H
+#define POMODORO_COMMON_H
+
+enum class Mode { WORK, SHORT_BREAK, LONG_BREAK };
+
+#endif  // POMODORO_COMMON_H

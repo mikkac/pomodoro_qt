@@ -2,8 +2,7 @@
 #define IPOMODORO_MODEL_H
 
 #include <QObject>
-
-enum class Mode { WORK, SHORT_BREAK, LONG_BREAK };
+#include "common.h"
 
 class IPomodoroModel {
  public:

@@ -27,17 +27,21 @@ SOURCES += \
         main.cpp \
         pomodoro_view.cpp \
         pomodoro_model.cpp \
+        mode_manager.cpp \
         timer.cpp \
         settings_manager.cpp \
 
 HEADERS += \
         pomodoro_view.h \
         ipomodoro_model.h \
+        imode_manager.h \
         isettings_manager.h \
         itimer.h \
         pomodoro_model.h \
+        mode_manager.h \
         settings_manager.h \
         timer.h \
+        common.h \
 
 FORMS += \
         pomodoro_view.ui

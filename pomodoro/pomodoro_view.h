@@ -25,6 +25,11 @@ class PomodoroView : public QWidget {
   void on_modeValueChanged(Mode mode);
 
  private:
+  void start();
+  void pause();
+  void stop();
+
+ private:
   Ui::PomodoroView* ui;
   IPomodoroModel* model_{};
   bool is_started{false};
