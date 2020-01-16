@@ -15,10 +15,11 @@ class IPomodoroModel {
   virtual ~IPomodoroModel() noexcept = default;
 
   virtual void setMode(Mode mode) = 0;
-  virtual void setTime(uint16_t value) = 0;
+  virtual void setTime(uint16_t seconds) = 0;
   virtual void start() = 0;
   virtual void pause() = 0;
   virtual void stop() = 0;
+  virtual void reloadValues() = 0;
 
   void emitNewTimerValue(uint16_t seconds);
   void emitNewModeValue(Mode mode);
