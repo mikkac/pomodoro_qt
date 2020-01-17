@@ -2,14 +2,14 @@
 #define POMODORO_VIEW_H
 
 #include <QDebug>
-#include <QWidget>
+#include <QMainWindow>
 #include "ipomodoro_model.h"
 
 namespace Ui {
 class PomodoroView;
 }
 
-class PomodoroView : public QWidget {
+class PomodoroView : public QMainWindow {
   Q_OBJECT
 
  public:

@@ -2,7 +2,7 @@
 #include "ui_pomodoro_view.h"
 
 PomodoroView::PomodoroView(QWidget* parent)
-    : QWidget(parent), ui(new Ui::PomodoroView) {
+    : QMainWindow(parent), ui(new Ui::PomodoroView) {
   qDebug() << "PomodoroView: ctor";
   ui->setupUi(this);
 }
