@@ -29,6 +29,8 @@ class PomodoroView : public QMainWindow {
   void pause();
   void stop();
 
+  void informAboutModeChange(const QString& message);
+
  private:
   Ui::PomodoroView* ui;
   IPomodoroModel* model_{};

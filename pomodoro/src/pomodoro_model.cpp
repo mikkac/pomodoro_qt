@@ -37,6 +37,8 @@ void PomodoroModel::pause() {
 void PomodoroModel::stop() {
   time_left_seconds_ = init_time_left_seconds_;
   setMode(Mode::WORK);
+  setProperInitTime();
+  time_left_seconds_ = init_time_left_seconds_;
   if (mode_manager_) mode_manager_->reset();
   emit emitNewTimerValue(time_left_seconds_);
   if (timer_) timer_->stopCountdown();

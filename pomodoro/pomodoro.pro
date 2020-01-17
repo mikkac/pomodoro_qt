@@ -23,25 +23,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
+SRCPATH += $$PWD"/src"
 SOURCES += \
-        main.cpp \
-        pomodoro_view.cpp \
-        pomodoro_model.cpp \
-        mode_manager.cpp \
-        timer.cpp \
-        settings_manager.cpp \
+        $$SRCPATH/main.cpp \
+        $$SRCPATH/pomodoro_view.cpp \
+        $$SRCPATH/pomodoro_model.cpp \
+        $$SRCPATH/mode_manager.cpp \
+        $$SRCPATH/timer.cpp \
+        $$SRCPATH/settings_manager.cpp \
 
+INCLUDEPATH += $$PWD"/inc"
 HEADERS += \
-        pomodoro_view.h \
-        ipomodoro_model.h \
-        imode_manager.h \
-        isettings_manager.h \
-        itimer.h \
-        pomodoro_model.h \
-        mode_manager.h \
-        settings_manager.h \
-        timer.h \
-        common.h \
+        $$INCLUDEPATH/pomodoro_view.h \
+        $$INCLUDEPATH/ipomodoro_model.h \
+        $$INCLUDEPATH/imode_manager.h \
+        $$INCLUDEPATH/isettings_manager.h \
+        $$INCLUDEPATH/itimer.h \
+        $$INCLUDEPATH/pomodoro_model.h \
+        $$INCLUDEPATH/mode_manager.h \
+        $$INCLUDEPATH/settings_manager.h \
+        $$INCLUDEPATH/timer.h \
+        $$INCLUDEPATH/common.h \
 
 FORMS += \
         pomodoro_view.ui

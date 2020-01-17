@@ -1,6 +1,6 @@
 #include "pomodoro_view.h"
+#include <QMessageBox>
 #include "ui_pomodoro_view.h"
-
 PomodoroView::PomodoroView(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::PomodoroView) {
   qDebug() << "PomodoroView: ctor";
@@ -43,15 +43,17 @@ void PomodoroView::on_modeValueChanged(Mode mode) {
   switch (mode) {
     case Mode::WORK:
       display_value = "Work";
+      informAboutModeChange("It's time to work!");
       if (is_started) pause();
       break;
     case Mode::SHORT_BREAK:
       display_value = "Short break";
-
+      informAboutModeChange("Take a short break!");
       if (is_started) pause();
       break;
     case Mode::LONG_BREAK:
       display_value = "Long break";
+      informAboutModeChange("Take a long break!");
       if (is_started) pause();
       break;
     default:
@@ -81,4 +83,8 @@ void PomodoroView::stop() {
   ui->startButton->setText("Start");
   is_started = false;
   is_paused = false;
+}
+
+void PomodoroView::informAboutModeChange(const QString& message) {
+  QMessageBox::information(this, "Change of the mode", message);
 }
