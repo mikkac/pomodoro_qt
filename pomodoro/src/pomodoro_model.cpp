@@ -52,7 +52,7 @@ void PomodoroModel::reloadValues() {
 
 void PomodoroModel::timerValueChanged(uint16_t seconds) {
   time_left_seconds_ = seconds;
-  if (time_left_seconds_ == 0) {  // Time to change mode
+  if (time_left_seconds_ == 0) {  // Time to change the mode
     if (timer_) timer_->stopCountdown();
     if (mode_manager_)
       setMode(mode_manager_->checkModeAndSetNewIfNeeded(mode_));
@@ -67,7 +67,8 @@ void PomodoroModel::modeValueChanged(Mode mode) {
   emit emitNewModeValue(mode_);
 }
 
-void PomodoroModel::setProperInitTime() {
+void PomodoroModel::setProperInitTime() {  // TODO Load those values from
+                                           // settings
   switch (mode_) {
     case Mode::WORK:
       init_time_left_seconds_ = 5;

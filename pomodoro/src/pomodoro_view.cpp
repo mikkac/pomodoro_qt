@@ -11,14 +11,22 @@ PomodoroView::~PomodoroView() { delete ui; }
 
 void PomodoroView::setModel(IPomodoroModel* model) {
   model_ = model;
-  QObject::connect(dynamic_cast<QObject*>(model),
+  QObject::connect(dynamic_cast<QObject*>(model_),
                    SIGNAL(emitNewTimerValue(uint16_t)), this,
                    SLOT(on_timerValueChanged(uint16_t)));
-  QObject::connect(dynamic_cast<QObject*>(model),
+  QObject::connect(dynamic_cast<QObject*>(model_),
                    SIGNAL(emitNewModeValue(Mode)), this,
                    SLOT(on_modeValueChanged(Mode)));
+  // QObject::connect(this, SIGNAL(), dynamic_cast<QObject*>(settings),
+  // SLOT(triggered(bool)));
   model->reloadValues();
   qDebug() << "PomodoroView: setModel";
+}
+
+void PomodoroView::setSettingsWidget(SettingsWidget* settings) {
+  settings_ = settings;
+  QObject::connect(dynamic_cast<QObject*>(ui->actionPreferences),
+                   SIGNAL(triggered(bool)), this, SLOT(on_settingsEntered()));
 }
 
 void PomodoroView::on_startButton_clicked() {
@@ -61,6 +69,10 @@ void PomodoroView::on_modeValueChanged(Mode mode) {
   }
   qDebug() << "PomodoroView: mode to set: " << display_value;
   ui->modeLabel->setText(display_value);
+}
+
+void PomodoroView::on_settingsEntered() {
+  if (settings_) settings_->show();
 }
 
 void PomodoroView::start() {

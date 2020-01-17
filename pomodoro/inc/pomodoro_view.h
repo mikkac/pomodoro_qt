@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QMainWindow>
 #include "ipomodoro_model.h"
+#include "settings_widget.h"
 
 namespace Ui {
 class PomodoroView;
@@ -17,12 +18,14 @@ class PomodoroView : public QMainWindow {
   ~PomodoroView();
 
   void setModel(IPomodoroModel* model);
+  void setSettingsWidget(SettingsWidget* settings);
 
  private slots:
   void on_startButton_clicked();
   void on_stopButton_clicked();
   void on_timerValueChanged(uint16_t seconds);
   void on_modeValueChanged(Mode mode);
+  void on_settingsEntered();
 
  private:
   void start();
@@ -34,6 +37,7 @@ class PomodoroView : public QMainWindow {
  private:
   Ui::PomodoroView* ui;
   IPomodoroModel* model_{};
+  SettingsWidget* settings_{};
   bool is_started{false};
   bool is_paused{false};
 };
