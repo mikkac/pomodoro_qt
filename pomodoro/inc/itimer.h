@@ -13,6 +13,7 @@ class ITimer {
   virtual void startCountdown(uint16_t init_seconds) = 0;
   virtual void stopCountdown() = 0;
 
+  // signals
   void updateTime(uint16_t seconds);
 };
 

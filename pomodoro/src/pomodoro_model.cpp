@@ -1,14 +1,19 @@
 #include "pomodoro_model.h"
 
 PomodoroModel::PomodoroModel(QObject* parent, ITimer* timer,
-                             IModeManager* mode_manager)
+                             IModeManager* mode_manager,
+                             ISettingsManager* settings_manager)
     : QObject(parent),
       IPomodoroModel(),
       timer_{timer},
-      mode_manager_{mode_manager} {
+      mode_manager_{mode_manager},
+      settings_manager_{settings_manager} {
   qDebug() << "PomodoroModel: ctor";
   QObject::connect(dynamic_cast<QObject*>(timer_), SIGNAL(updateTime(uint16_t)),
                    this, SLOT(timerValueChanged(uint16_t)));
+  QObject::connect(dynamic_cast<QObject*>(settings_manager_),
+                   SIGNAL(emitSettingsValuesChanged()), this,
+                   SLOT(settingsValuesChanged()));
   // Load values from settings
   if (mode_manager_) mode_manager->setPomodorosBeforeLongBreak(4);
 }
@@ -35,11 +40,7 @@ void PomodoroModel::pause() {
 }
 
 void PomodoroModel::stop() {
-  time_left_seconds_ = init_time_left_seconds_;
-  setMode(Mode::WORK);
-  setProperInitTime();
-  time_left_seconds_ = init_time_left_seconds_;
-  if (mode_manager_) mode_manager_->reset();
+  reset();
   emit emitNewTimerValue(time_left_seconds_);
   if (timer_) timer_->stopCountdown();
   qDebug() << "PomodoroModel: stop";
@@ -56,7 +57,7 @@ void PomodoroModel::timerValueChanged(uint16_t seconds) {
     if (timer_) timer_->stopCountdown();
     if (mode_manager_)
       setMode(mode_manager_->checkModeAndSetNewIfNeeded(mode_));
-    setProperInitTime();
+    setProperValues();
     time_left_seconds_ = init_time_left_seconds_;
   }
   emit emitNewTimerValue(time_left_seconds_);
@@ -67,17 +68,23 @@ void PomodoroModel::modeValueChanged(Mode mode) {
   emit emitNewModeValue(mode_);
 }
 
-void PomodoroModel::setProperInitTime() {  // TODO Load those values from
-                                           // settings
-  switch (mode_) {
-    case Mode::WORK:
-      init_time_left_seconds_ = 5;
-      break;
-    case Mode::SHORT_BREAK:
-      init_time_left_seconds_ = 3;
-      break;
-    case Mode::LONG_BREAK:
-      init_time_left_seconds_ = 10;
-      break;
+void PomodoroModel::settingsValuesChanged() { setProperValues(); }
+
+void PomodoroModel::setProperValues() {  // TODO Load those values from
+                                         // settings
+  if (settings_manager_) {
+    init_time_left_seconds_ =
+        settings_manager_->getTimeValueForMode(mode_) * 60;
+    pomodoros_before_long_break_ = settings_manager_->getPomodorosNumber();
   }
+  qDebug() << "VALUES CHANGE" << QString::number(init_time_left_seconds_) << " "
+           << QString::number(pomodoros_before_long_break_);
+}
+
+void PomodoroModel::reset() {
+  setMode(Mode::WORK);
+  setProperValues();
+  time_left_seconds_ = init_time_left_seconds_;
+  if (mode_manager_) mode_manager_->reset();
+  emit emitNewTimerValue(time_left_seconds_);
 }

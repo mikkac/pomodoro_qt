@@ -3,16 +3,17 @@
 
 #include <QDebug>
 #include <QObject>
-#include <QtPlugin>
 #include "imode_manager.h"
 #include "ipomodoro_model.h"
+#include "isettings_manager.h"
 #include "itimer.h"
 
 class PomodoroModel : public QObject, public IPomodoroModel {
   Q_OBJECT
  public:
   explicit PomodoroModel(QObject* parent = nullptr, ITimer* timer = nullptr,
-                         IModeManager* mode_manager = nullptr);
+                         IModeManager* mode_manager = nullptr,
+                         ISettingsManager* settings_manager = nullptr);
   PomodoroModel(const PomodoroModel&) = default;
   PomodoroModel(PomodoroModel&&) noexcept = default;
   PomodoroModel& operator=(const PomodoroModel&) = default;
@@ -33,13 +34,16 @@ class PomodoroModel : public QObject, public IPomodoroModel {
  private slots:
   void timerValueChanged(uint16_t seconds);
   void modeValueChanged(Mode mode);
+  void settingsValuesChanged();
 
  private:
-  void setProperInitTime();
+  void setProperValues();
+  void reset();
 
  private:
-  IModeManager* mode_manager_{};
   ITimer* timer_{};
+  IModeManager* mode_manager_{};
+  ISettingsManager* settings_manager_{};
   Mode mode_{Mode::WORK};                                // get it from settings
   uint16_t init_time_left_seconds_{5};                   // get it from settings
   uint16_t time_left_seconds_{init_time_left_seconds_};  // get it from settings

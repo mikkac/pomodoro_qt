@@ -33,7 +33,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="workLabel">
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
@@ -45,7 +45,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="shortLabel">
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
@@ -57,14 +57,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="longLabel">
               <property name="text">
                <string>Long break time length</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="pomodorosLabel">
               <property name="text">
                <string>Pomodoros before long break</string>
               </property>
@@ -75,7 +75,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QTextEdit" name="textEdit">
+             <widget class="QTextEdit" name="workTimeTextEdit">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                 <horstretch>0</horstretch>
@@ -100,7 +100,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="textEdit_2">
+             <widget class="QTextEdit" name="shortTimeTextEdit">
               <property name="font">
                <font>
                 <pointsize>15</pointsize>
@@ -119,7 +119,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="textEdit_3">
+             <widget class="QTextEdit" name="longTimeTextEdit">
               <property name="font">
                <font>
                 <pointsize>15</pointsize>
@@ -131,7 +131,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="textEdit_4">
+             <widget class="QTextEdit" name="pomodorosNumTextEdit">
               <property name="font">
                <font>
                 <pointsize>15</pointsize>
@@ -152,14 +152,14 @@ p, li { white-space: pre-wrap; }
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="saveButton">
          <property name="text">
           <string>Save</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="cancelButton">
          <property name="text">
           <string>Cancel</string>
          </property>

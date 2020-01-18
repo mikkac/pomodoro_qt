@@ -1,7 +1,6 @@
 #ifndef IPOMODORO_MODEL_H
 #define IPOMODORO_MODEL_H
 
-#include <QObject>
 #include "common.h"
 
 class IPomodoroModel {
@@ -20,6 +19,7 @@ class IPomodoroModel {
   virtual void stop() = 0;
   virtual void reloadValues() = 0;
 
+  // signals
   void emitNewTimerValue(uint16_t seconds);
   void emitNewModeValue(Mode mode);
 };
