@@ -14,8 +14,8 @@ void SettingsManager::saveToFile(const char *file_name) {
   auto settings_file = QApplication::applicationDirPath() + file_name;
   QSettings settings(settings_file, QSettings::NativeFormat);
   for (auto &pair : time_values_) {
-    if (pair.second > 0)  // if value is less or equal to 0, it's probably empty
-                          // or invalid. We shouldn't save it
+    if (pair.second >= 1)  // if value is less or equal to 0, it's probably
+                           // empty or invalid. We shouldn't save it
       settings.setValue(QString::number(static_cast<uint16_t>(pair.first)),
                         pair.second);
   }

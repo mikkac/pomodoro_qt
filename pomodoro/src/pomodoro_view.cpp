@@ -1,6 +1,8 @@
 #include "pomodoro_view.h"
+#include <QDateTime>
 #include <QMessageBox>
 #include "ui_pomodoro_view.h"
+
 PomodoroView::PomodoroView(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::PomodoroView) {
   qDebug() << "PomodoroView: ctor";
@@ -41,7 +43,7 @@ void PomodoroView::on_stopButton_clicked() {
 }
 
 void PomodoroView::on_timerValueChanged(uint16_t seconds) {
-  ui->timerLabel->setText(QString::number(seconds));
+  ui->timerLabel->setText(formatTime(seconds));
 }
 
 void PomodoroView::on_modeValueChanged(Mode mode) {
@@ -93,6 +95,13 @@ void PomodoroView::stop() {
   ui->startButton->setText("Start");
   is_started = false;
   is_paused = false;
+}
+
+QString PomodoroView::formatTime(uint16_t seconds) const {
+  if (seconds <= 3600)
+    return QDateTime::fromTime_t(seconds).toUTC().toString("mm:ss");
+  else
+    return QDateTime::fromTime_t(seconds).toUTC().toString("hh:mm:ss");
 }
 
 void PomodoroView::informAboutModeChange(const QString& message) {

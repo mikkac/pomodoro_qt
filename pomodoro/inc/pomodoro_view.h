@@ -31,7 +31,7 @@ class PomodoroView : public QMainWindow {
   void start();
   void pause();
   void stop();
-
+  QString formatTime(uint16_t seconds) const;
   void informAboutModeChange(const QString& message);
 
  private:
