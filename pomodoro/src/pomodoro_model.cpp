@@ -15,10 +15,13 @@ PomodoroModel::PomodoroModel(QObject* parent, ITimer* timer,
                    SIGNAL(emitSettingsValuesChanged()), this,
                    SLOT(settingsValuesChanged()));
 
+  mode_ = Mode::WORK;
   if (settings_manager_) settings_manager_->loadFromFile(DEFAULT_SETTINGS_FILE);
-  setProperValues();
   if (mode_manager_)
     mode_manager->setPomodorosBeforeLongBreak(pomodoros_before_long_break_);
+  setProperValues();
+  time_left_seconds_ = init_time_left_seconds_;
+  reloadValues();
 }
 
 void PomodoroModel::setMode(Mode mode) {

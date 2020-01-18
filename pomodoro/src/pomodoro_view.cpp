@@ -17,8 +17,6 @@ void PomodoroView::setModel(IPomodoroModel* model) {
   QObject::connect(dynamic_cast<QObject*>(model_),
                    SIGNAL(emitNewModeValue(Mode)), this,
                    SLOT(on_modeValueChanged(Mode)));
-  // QObject::connect(this, SIGNAL(), dynamic_cast<QObject*>(settings),
-  // SLOT(triggered(bool)));
   model->reloadValues();
   qDebug() << "PomodoroView: setModel";
 }
