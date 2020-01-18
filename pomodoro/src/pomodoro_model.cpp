@@ -14,8 +14,11 @@ PomodoroModel::PomodoroModel(QObject* parent, ITimer* timer,
   QObject::connect(dynamic_cast<QObject*>(settings_manager_),
                    SIGNAL(emitSettingsValuesChanged()), this,
                    SLOT(settingsValuesChanged()));
-  // Load values from settings
-  if (mode_manager_) mode_manager->setPomodorosBeforeLongBreak(4);
+
+  if (settings_manager_) settings_manager_->loadFromFile(DEFAULT_SETTINGS_FILE);
+  setProperValues();
+  if (mode_manager_)
+    mode_manager->setPomodorosBeforeLongBreak(pomodoros_before_long_break_);
 }
 
 void PomodoroModel::setMode(Mode mode) {

@@ -12,6 +12,10 @@ void SettingsManager::saveToFile(const char *file_name) {
   qDebug() << "SAVE TO FILE " << QString(file_name);
 }
 
+void SettingsManager::loadFromFile(const char *file_name) {
+  qDebug() << "LOAD FROM FILE " << QString(file_name);
+}
+
 uint16_t SettingsManager::getTimeValueForMode(Mode mode) const {
   auto it = time_values_.find(mode);
   if (it != time_values_.end())

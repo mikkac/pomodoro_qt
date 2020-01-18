@@ -15,6 +15,7 @@ class ISettingsManager {
   virtual void changeValues(settings_values time_values,
                             uint16_t pomodoros_number) = 0;
   virtual void saveToFile(const char* file_name) = 0;
+  virtual void loadFromFile(const char* file_name) = 0;
   virtual uint16_t getTimeValueForMode(Mode mode) const = 0;
   virtual uint16_t getPomodorosNumber() const = 0;
 
