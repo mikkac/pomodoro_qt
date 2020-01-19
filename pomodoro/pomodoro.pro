@@ -31,7 +31,7 @@ SOURCES += \
         $$SRCPATH/mode_manager.cpp \
         $$SRCPATH/timer.cpp \
         $$SRCPATH/settings_manager.cpp \
-        $$SRCPATH/settings_widget.cpp
+        $$SRCPATH/ui_settings_widget.cpp
 
 INCLUDEPATH += $$PWD"/inc"
 HEADERS += \
@@ -45,7 +45,7 @@ HEADERS += \
         $$INCLUDEPATH/settings_manager.h \
         $$INCLUDEPATH/timer.h \
         $$INCLUDEPATH/common.h \
-        $$INCLUDEPATH/settings_widget.h
+        $$INCLUDEPATH/ui_settings_widget.h
 
 FORMS += \
         pomodoro_view.ui \
