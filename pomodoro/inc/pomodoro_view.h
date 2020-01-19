@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QMainWindow>
 #include "ipomodoro_model.h"
-#include "settings_widget.h"
+#include "ui_settings_widget.h"
 
 namespace Ui {
 class PomodoroView;

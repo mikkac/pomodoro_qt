@@ -6,7 +6,7 @@
 #include "pomodoro_model.h"
 #include "pomodoro_view.h"
 #include "settings_manager.h"
-#include "settings_widget.h"
+#include "ui_settings_widget.h"
 #include "timer.h"
 
 int main(int argc, char* argv[]) {
@@ -23,4 +23,7 @@ int main(int argc, char* argv[]) {
   w.setModel(model);
   w.setSettingsWidget(settings_widget);
   return a.exec();
+  // TODO
+  // * zeby nie wyswietalo sie okienko po wlaczeniu
+  // * zmienic textedit na suwaki
 }
