@@ -1,7 +1,6 @@
 #ifndef POMODORO_VIEW_H
 #define POMODORO_VIEW_H
 
-#include <QDebug>
 #include <QMainWindow>
 #include "ipomodoro_model.h"
 #include "settings_widget.h"

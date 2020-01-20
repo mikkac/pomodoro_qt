@@ -7,6 +7,7 @@ SettingsWidget::SettingsWidget(QWidget* parent,
     : QWidget(parent),
       ui(new Ui::SettingsWidget),
       settings_manager_{settings_manager} {
+  qDebug() << "SettingsWidget: ctor";
   ui->setupUi(this);
   QObject::connect(ui->saveButton, SIGNAL(clicked(bool)), this, SLOT(save()));
   QObject::connect(ui->cancelButton, SIGNAL(clicked(bool)), this,
@@ -17,6 +18,7 @@ SettingsWidget::SettingsWidget(QWidget* parent,
 SettingsWidget::~SettingsWidget() { delete ui; }
 
 settings_values SettingsWidget::dumpTimes() {
+  qDebug() << "SettingsWidget: dumpTimes";
   settings_values result;
   result[Mode::WORK] = ui->workTimeValue->text().toUInt();
   result[Mode::SHORT_BREAK] = ui->shortTimeValue->text().toUInt();
@@ -25,10 +27,12 @@ settings_values SettingsWidget::dumpTimes() {
 }
 
 uint16_t SettingsWidget::dumpPomodoros() {
+  qDebug() << "SettingsWidget: dumpPomodoros (pomodoros before long break)";
   return ui->pomodorosValue->text().toUInt();
 }
 
 void SettingsWidget::save() {
+  qDebug() << "SettingsWidget: save";
   auto time_values = dumpTimes();
   auto pomodoros_number = dumpPomodoros();
 
@@ -38,9 +42,13 @@ void SettingsWidget::save() {
   this->close();
 }
 
-void SettingsWidget::cancel() { this->close(); }
+void SettingsWidget::cancel() {
+  qDebug() << "SettingsWidget: cancel";
+  this->close();
+}
 
 void SettingsWidget::loadSettings() {
+  qDebug() << "SettingsWidget: loadSettings";
   auto time_value = settings_manager_->getTimeValueForMode(Mode::WORK);
   ui->workTimeSlider->setValue(time_value);
   ui->workTimeValue->setText(QString::number(time_value));
@@ -59,17 +67,21 @@ void SettingsWidget::loadSettings() {
 }
 
 void SettingsWidget::on_workTimeSlider_valueChanged(int value) {
+  qDebug() << "SettingsWidget: on_workTimeSlider_valueChanged";
   ui->workTimeValue->setText(QString::number(value));
 }
 
 void SettingsWidget::on_shortTimeSlider_valueChanged(int value) {
+  qDebug() << "SettingsWidget: on_shortTimeSlider_valueChanged";
   ui->shortTimeValue->setText(QString::number(value));
 }
 
 void SettingsWidget::on_longTimeSlider_valueChanged(int value) {
+  qDebug() << "SettingsWidget: on_longTimeSlider_valueChanged";
   ui->longTimeValue->setText(QString::number(value));
 }
 
 void SettingsWidget::on_pomodorosSlider_valueChanged(int value) {
+  qDebug() << "SettingsWidget: on_pomodorosSlider_valueChanged";
   ui->pomodorosValue->setText(QString::number(value));
 }

@@ -9,14 +9,14 @@ Timer::Timer(QObject* parent) : QObject(parent), ITimer() {
 }
 
 void Timer::startCountdown(uint16_t init_seconds) {
+  qDebug() << "Timer: startCountdown/ init_seconds = " << init_seconds;
   time_left_seconds_ = init_seconds;
   timer_->start();
-  qDebug() << "Timer: startCountdown = " << init_seconds;
 }
 
 void Timer::stopCountdown() {
-  timer_->stop();
   qDebug() << "Timer: stopCountdown";
+  timer_->stop();
 }
 
 void Timer::tick() {

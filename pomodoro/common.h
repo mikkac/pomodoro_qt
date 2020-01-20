@@ -4,7 +4,8 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QString>
-#define DEFAULT_SETTINGS_FILE "pomodoro_settings.txt"
+
+#define DEFAULT_SETTINGS_FILE "/pomodoro_settings.txt"
 
 constexpr uint16_t WORK_DEFAULT_TIME = 20;
 constexpr uint16_t SHORT_BREAK_DEFAULT_TIME = 5;
@@ -33,6 +34,20 @@ inline QString formatTime(uint16_t seconds) {
     return QDateTime::fromTime_t(seconds).toUTC().toString("mm:ss");
   else
     return QDateTime::fromTime_t(seconds).toUTC().toString("hh:mm:ss");
+}
+
+// debug purposes
+inline QString modeAsString(Mode mode) {
+  switch (mode) {
+    case Mode::WORK:
+      return "WORK";
+    case Mode::SHORT_BREAK:
+      return "SHORT_BREAK";
+    case Mode::LONG_BREAK:
+      return "LONG_BREAK";
+    default:
+      return "Unknown";
+  }
 }
 
 #endif  // POMODORO_COMMON_H

@@ -1,7 +1,6 @@
 #ifndef POMODORO_MODEL_H
 #define POMODORO_MODEL_H
 
-#include <QDebug>
 #include <QObject>
 #include "imode_manager.h"
 #include "ipomodoro_model.h"

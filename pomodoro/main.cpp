@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
   w.setModel(model);
   w.setSettingsWidget(settings_widget);
   return a.exec();
-  // TODO
-  // add proper debug logs
-  // add an icon (notification too)
 }
+
+// TODO
+// add an icon (for notification too)

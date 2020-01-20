@@ -2,8 +2,6 @@
 #define SETTINGS_MANAGER_H
 
 #include <QObject>
-#include <array>
-#include <string>
 #include "isettings_manager.h"
 
 class SettingsManager : public QObject, public ISettingsManager {

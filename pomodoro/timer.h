@@ -1,7 +1,6 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#include <QDebug>
 #include <QTimer>
 #include "itimer.h"
 
