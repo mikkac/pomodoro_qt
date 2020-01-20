@@ -1,6 +1,7 @@
 #include "pomodoro_view.h"
 #include <QDateTime>
 #include <QMessageBox>
+#include <QSystemTrayIcon>
 #include "ui_pomodoro_view.h"
 
 PomodoroView::PomodoroView(QWidget* parent)
@@ -70,8 +71,9 @@ void PomodoroView::on_modeValueChanged(Mode mode) {
       display_message = "Unknown";
   }
   qDebug() << "PomodoroView: mode to set: " << display_value;
-  if (display_value != ui->modeLabel->text())
+  if (display_value != ui->modeLabel->text()) {
     informAboutModeChange(display_message);
+  }
   ui->modeLabel->setText(display_value);
 }
 
@@ -102,5 +104,11 @@ void PomodoroView::stop() {
 }
 
 void PomodoroView::informAboutModeChange(const QString& message) {
-  QMessageBox::information(this, "Change of the mode", message);
+  auto notification = new QSystemTrayIcon(this);
+  if (notification->isSystemTrayAvailable()) {
+    notification->setIcon(
+        QIcon::fromTheme("phone"));  // TODO change to custom icon
+    notification->setVisible(true);
+    notification->showMessage("Pomodoro", message);
+  }
 }
