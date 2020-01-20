@@ -27,7 +27,7 @@
            </font>
           </property>
           <property name="text">
-           <string/>
+           <string>Work</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -118,7 +118,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPreferences">
    <property name="text">
-    <string>Settings</string>
+    <string>&amp;Settings</string>
    </property>
   </action>
  </widget>

@@ -35,6 +35,7 @@ void PomodoroModel::setTime(uint16_t seconds) {
 }
 
 void PomodoroModel::start() {
+  is_started = true;
   if (timer_) timer_->startCountdown(time_left_seconds_);
   qDebug() << "TIME LEFT =" << QString::number(time_left_seconds_);
   qDebug() << "PomodoroModel: start";
@@ -46,6 +47,7 @@ void PomodoroModel::pause() {
 }
 
 void PomodoroModel::stop() {
+  is_started = false;
   reset();
   emit emitNewTimerValue(time_left_seconds_);
   if (timer_) timer_->stopCountdown();
@@ -70,11 +72,21 @@ void PomodoroModel::timerValueChanged(uint16_t seconds) {
 }
 
 void PomodoroModel::modeValueChanged(Mode mode) {
-  mode_ = mode;
-  emit emitNewModeValue(mode_);
+  qDebug() << "MODE CHANGEEED " << QString::number(static_cast<uint16_t>(mode))
+           << "/" << QString::number(static_cast<uint16_t>(mode_));
+  if (mode != mode_) {
+    mode_ = mode;
+    emit emitNewModeValue(mode_);
+  }
 }
 
-void PomodoroModel::settingsValuesChanged() { setProperValues(); }
+void PomodoroModel::settingsValuesChanged() {
+  setProperValues();
+  if (!is_started) {
+    time_left_seconds_ = init_time_left_seconds_;
+    emit emitNewTimerValue(time_left_seconds_);
+  }
+}
 
 void PomodoroModel::setProperValues() {  // TODO Load those values from
                                          // settings

@@ -48,26 +48,30 @@ void PomodoroView::on_timerValueChanged(uint16_t seconds) {
 
 void PomodoroView::on_modeValueChanged(Mode mode) {
   QString display_value{};
+  QString display_message{};
   switch (mode) {
     case Mode::WORK:
       display_value = "Work";
-      informAboutModeChange("It's time to work!");
+      display_message = "It's time to work!";
       if (is_started) pause();
       break;
     case Mode::SHORT_BREAK:
       display_value = "Short break";
-      informAboutModeChange("Take a short break!");
+      display_message = "Take a short break!";
       if (is_started) pause();
       break;
     case Mode::LONG_BREAK:
       display_value = "Long break";
-      informAboutModeChange("Take a long break!");
+      display_message = "Take a long break!";
       if (is_started) pause();
       break;
     default:
       display_value = "Unknown";
+      display_message = "Unknown";
   }
   qDebug() << "PomodoroView: mode to set: " << display_value;
+  if (display_value != ui->modeLabel->text())
+    informAboutModeChange(display_message);
   ui->modeLabel->setText(display_value);
 }
 

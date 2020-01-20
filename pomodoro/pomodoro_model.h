@@ -44,10 +44,11 @@ class PomodoroModel : public QObject, public IPomodoroModel {
   ITimer* timer_{};
   IModeManager* mode_manager_{};
   ISettingsManager* settings_manager_{};
-  Mode mode_{Mode::WORK};                                // get it from settings
-  uint16_t init_time_left_seconds_{};                    // get it from settings
-  uint16_t time_left_seconds_{init_time_left_seconds_};  // get it from settings
-  uint16_t pomodoros_before_long_break_{};               // get it from settings
+  Mode mode_{Mode::WORK};
+  uint16_t init_time_left_seconds_{};
+  uint16_t time_left_seconds_{init_time_left_seconds_};
+  uint16_t pomodoros_before_long_break_{};
+  bool is_started{false};
 };
 
 #endif  // POMODORO_MODEL_H
