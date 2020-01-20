@@ -15,13 +15,12 @@ Things that can be done in order to make this application more robust and usable
 
 ## Screenshots
 #### Main window
-<br/><br/>
 ![pomodoro1](screenshots/pomodoro_screenshot1.png?raw=true)
+<br/><br/>
 
 #### Settings widget
-<br/><br/>
 ![pomodoro2](screenshots/pomodoro_screenshot2.png?raw=true)
+<br/><br/>
 
 #### System notification
-<br/><br/>
 ![pomodoro3](screenshots/pomodoro_screenshot3.png?raw=true)
