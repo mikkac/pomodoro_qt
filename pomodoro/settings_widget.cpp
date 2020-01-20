@@ -1,7 +1,6 @@
-#include "ui_settings_widget.h"
+#include "settings_widget.h"
 #include "common.h"
-#include "isettings_manager.h"
-#include "ui_preferences_widget.h"
+#include "ui_settings_widget.h"
 
 SettingsWidget::SettingsWidget(QWidget* parent,
                                ISettingsManager* settings_manager)
@@ -12,14 +11,7 @@ SettingsWidget::SettingsWidget(QWidget* parent,
   QObject::connect(ui->saveButton, SIGNAL(clicked(bool)), this, SLOT(save()));
   QObject::connect(ui->cancelButton, SIGNAL(clicked(bool)), this,
                    SLOT(cancel()));
-  QObject::connect(dynamic_cast<QObject*>(settings_manager_),
-                   SIGNAL(emitSettingsValuesChanged), this,
-                   SLOT(onLoadSettings()));
-
-  ui->workTimeSlider->setValue(WORK_DEFAULT_TIME);
-  ui->shortTimeSlider->setValue(SHORT_BREAK_DEFAULT_TIME);
-  ui->longTimeSlider->setValue(LONG_BREAK_DEFAULT_TIME);
-  ui->pomodorosSlider->setValue(DEFAULT_POMODOROS_NUMBER);
+  loadSettings();
 }
 
 SettingsWidget::~SettingsWidget() { delete ui; }
@@ -48,7 +40,7 @@ void SettingsWidget::save() {
 
 void SettingsWidget::cancel() { this->close(); }
 
-void SettingsWidget::onLoadSettings() {
+void SettingsWidget::loadSettings() {
   auto time_value = settings_manager_->getTimeValueForMode(Mode::WORK);
   ui->workTimeSlider->setValue(time_value);
   ui->workTimeValue->setText(QString::number(time_value));
@@ -75,9 +67,9 @@ void SettingsWidget::on_shortTimeSlider_valueChanged(int value) {
 }
 
 void SettingsWidget::on_longTimeSlider_valueChanged(int value) {
-  ui->shortTimeValue->setText(QString::number(value));
+  ui->longTimeValue->setText(QString::number(value));
 }
 
 void SettingsWidget::on_pomodorosSlider_valueChanged(int value) {
-  ui->shortTimeValue->setText(QString::number(value));
+  ui->pomodorosValue->setText(QString::number(value));
 }

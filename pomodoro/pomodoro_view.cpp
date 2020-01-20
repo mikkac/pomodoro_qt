@@ -97,13 +97,6 @@ void PomodoroView::stop() {
   is_paused = false;
 }
 
-QString PomodoroView::formatTime(uint16_t seconds) const {
-  if (seconds <= 3600)
-    return QDateTime::fromTime_t(seconds).toUTC().toString("mm:ss");
-  else
-    return QDateTime::fromTime_t(seconds).toUTC().toString("hh:mm:ss");
-}
-
 void PomodoroView::informAboutModeChange(const QString& message) {
   QMessageBox::information(this, "Change of the mode", message);
 }

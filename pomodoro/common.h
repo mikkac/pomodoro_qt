@@ -1,6 +1,9 @@
 #ifndef POMODORO_COMMON_H
 #define POMODORO_COMMON_H
 
+#include <QDateTime>
+#include <QDebug>
+#include <QString>
 #define DEFAULT_SETTINGS_FILE "pomodoro_settings.txt"
 
 constexpr uint16_t WORK_DEFAULT_TIME = 20;
@@ -23,6 +26,13 @@ inline uint16_t defaultTimeValueForMode(Mode mode) {
     default:
       return WORK_DEFAULT_TIME;
   }
+}
+
+inline QString formatTime(uint16_t seconds) {
+  if (seconds <= 3600)
+    return QDateTime::fromTime_t(seconds).toUTC().toString("mm:ss");
+  else
+    return QDateTime::fromTime_t(seconds).toUTC().toString("hh:mm:ss");
 }
 
 #endif  // POMODORO_COMMON_H

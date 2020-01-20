@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QMainWindow>
 #include "ipomodoro_model.h"
-#include "ui_settings_widget.h"
+#include "settings_widget.h"
 
 namespace Ui {
 class PomodoroView;
@@ -31,7 +31,6 @@ class PomodoroView : public QMainWindow {
   void start();
   void pause();
   void stop();
-  QString formatTime(uint16_t seconds) const;
   void informAboutModeChange(const QString& message);
 
  private:

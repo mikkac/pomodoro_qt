@@ -10,7 +10,9 @@ class SettingsManager : public QObject, public ISettingsManager {
   Q_OBJECT
  public:
   explicit SettingsManager(QObject* parent = nullptr)
-      : QObject(parent), ISettingsManager() {}
+      : QObject(parent), ISettingsManager() {
+    loadFromFile(DEFAULT_SETTINGS_FILE);
+  }
   SettingsManager(const SettingsManager&) = default;
   SettingsManager(SettingsManager&&) noexcept = default;
   SettingsManager& operator=(const SettingsManager&) = default;
