@@ -14,11 +14,14 @@ Things that can be done in order to make this application more robust and usable
 * add sound alarm on transitions between modes
 
 ## Screenshots
-Main window
+#### Main window
+<br/><br/>
 ![pomodoro1](screenshots/pomodoro_screenshot1.png?raw=true)
 
-Settings widget
+#### Settings widget
+<br/><br/>
 ![pomodoro2](screenshots/pomodoro_screenshot2.png?raw=true)
 
-System notification
+#### System notification
+<br/><br/>
 ![pomodoro3](screenshots/pomodoro_screenshot3.png?raw=true)
