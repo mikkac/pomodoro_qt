@@ -13,7 +13,7 @@ Customisable variables:
 * pomodoros before long break (number of work intervals before long break) (4 by default)
 
 ## Improvements
-Things that can be done in order to make this application more robust and usable:
+Things that can be done in order to make this application more robust and useful:
 * make it installable (add exec to /usr, move settings file to some safe place, etc.)
 * add icons for exec and notification window
 * add sound alarm on transitions between modes
